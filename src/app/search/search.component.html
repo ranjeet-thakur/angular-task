@@ -1,0 +1,12 @@
+<div class="container">
+  
+    <div class="search-container">
+              <input class="form-control" type="text" (keyup)="onInputKepUp($event)" placeholder="Search by Company name" aria-label="Search">
+              <button (click)="getList()">Get Company List</button>
+      </div>
+    <div *ngIf="found">
+  <span>{{company_name}}'s age is {{age}}</span>
+</div>
+    
+      
+</div>
