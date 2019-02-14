@@ -1,12 +1,30 @@
 <div class="container">
-  
     <div class="search-container">
-              <input class="form-control" type="text" (keyup)="onInputKepUp($event)" placeholder="Search by Company name" aria-label="Search">
-              <button (click)="getList()">Get Company List</button>
-      </div>
-    <div *ngIf="found">
-  <span>{{company_name}}'s age is {{age}}</span>
-</div>
-    
-      
+        <input class="form-control" type="text" (keyup)="onInputKepUp($event)" placeholder="Search by Company name"
+            aria-label="Search">
+
+    </div>
+    <div class="search-btn"> <button (click)="getList()">Get Company List</button></div>
+
+    <div *ngIf="results.length > 0">
+        <h3>Search Results</h3>
+
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Company ID</th>
+                <th>Company Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of results;let i = index" >
+                <td>{{i}}</td>
+                <td>{{item.companyIds[0]}}</td>
+                <td>{{item.companyName}}</td>
+              </tr>
+              
+            </tbody>
+          </table>
+    </div>
 </div>

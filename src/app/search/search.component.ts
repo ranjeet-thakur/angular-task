@@ -6,31 +6,27 @@ import {  HttpClient } from '@angular/common/http';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent  {
   company_name:string = '';
+  results:any=[];
   found:boolean;
-  constructor(private httpClient:HttpClient) { }
+  constructor(private HttpClient:HttpClient) { }
 
     onInputKepUp(event:any){
         //console.log(event.target.value);
         this.company_name = event.target.value;
     }
     getList(){
-      
-      this.httpClient.get(`https://daas-qa-sig-api.circleback.com/service/contactcloud/companies/autocomplete?company_name=${this.company_name}`)
-    .subscribe(
-      (data:any[]) => {
-         //this.company_name = data[0].company_name;
-        //this.found = true;
-
-          console.log(data);
-        
-      }
-    )
-      
-  }
-
-  ngOnInit() {
+      //console.log(this.company_name);
+      this.HttpClient.get(`https://daas-qa-sig-api.circleback.com/service/contactcloud/companies/autocomplete?company_name=${this.company_name}`)
+        .subscribe(
+          (data:any) => {
+            if(data){
+              this.results = data.searchResults;
+              console.log(this.results);
+            }
+          }
+        )
   }
 
 }
